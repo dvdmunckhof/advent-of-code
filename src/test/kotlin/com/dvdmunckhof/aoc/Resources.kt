@@ -20,6 +20,10 @@ object Resources {
         return readAsList(filename).map(String::toLong)
     }
 
+    fun readSingleIntList(filename: String): List<Int> {
+        return readString(filename).split(",").map(String::toInt)
+    }
+
     private fun resourceReader(fileName: String): Reader {
         return javaClass.classLoader.getResourceAsStream(fileName)?.reader()
             ?: throw IllegalArgumentException("Cannot find Resource: $fileName")
