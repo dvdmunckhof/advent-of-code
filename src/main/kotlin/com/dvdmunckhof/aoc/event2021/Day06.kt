@@ -2,25 +2,27 @@ package com.dvdmunckhof.aoc.event2021
 
 class Day06(private val input: List<Int>) {
 
-    fun solvePart1(): Int = solve(80)
+    fun solvePart1(): Long = solve(80)
 
-    fun solvePart2(): Int = solve(256)
+    fun solvePart2(): Long = solve(256)
 
-    private fun solve(days: Int): Int {
-        val state = input.toMutableList()
+    private fun solve(days: Int): Long {
+        val count = calculate(days)
+        return input.sumOf { n -> count[n] }
+    }
 
-        for (day in 1..days) {
-            for (i in state.indices) {
-                val current = state[i]
-                if (current == 0) {
-                    state[i] = 6
-                    state += 8
-                } else {
-                    state[i] = current - 1
-                }
-            }
+    private fun calculate(days: Int): LongArray {
+        if (days == 0) {
+            return LongArray(9) { 1L }
         }
 
-        return state.size
+        val count = calculate(days - 1)
+        return LongArray(9) { i ->
+            if (i == 0) {
+                count[6] + count[8]
+            } else {
+                count[i - 1]
+            }
+        }
     }
 }

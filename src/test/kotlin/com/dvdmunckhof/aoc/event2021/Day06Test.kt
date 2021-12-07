@@ -13,7 +13,7 @@ class Day06Test {
         val input = Resources.readSingleIntList("2021/day06_example.txt")
         val answer = Day06(input).solvePart1()
 
-        Assertions.assertEquals(5_934, answer)
+        Assertions.assertEquals(5_934L, answer)
     }
 
     @Test
@@ -21,6 +21,22 @@ class Day06Test {
         val input = Resources.readSingleIntList("2021/day06_actual.txt")
         val answer = Day06(input).solvePart1()
 
-        Assertions.assertEquals(349_549, answer)
+        Assertions.assertEquals(349_549L, answer)
+    }
+
+    @Test
+    fun `Part 2 - Example`() {
+        val input = Resources.readSingleIntList("2021/day06_example.txt")
+        val answer = Day06(input).solvePart2()
+
+        Assertions.assertEquals(26_984_457_539L, answer)
+    }
+
+    @Test
+    fun `Part 2 - Actual`() {
+        val input = Resources.readSingleIntList("2021/day06_actual.txt")
+        val answer = Day06(input).solvePart2()
+
+        Assertions.assertEquals(1_589_590_444_365L, answer)
     }
 }
