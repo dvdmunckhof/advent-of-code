@@ -24,6 +24,10 @@ object Resources {
         return readString(filename).split(",").map(String::toInt)
     }
 
+    fun readAsGrid(filename: String): List<List<Int>> {
+        return readAsList(filename).map { row -> row.map(Char::digitToInt) }
+    }
+
     private fun resourceReader(fileName: String): Reader {
         return javaClass.classLoader.getResourceAsStream(fileName)?.reader()
             ?: throw IllegalArgumentException("Cannot find Resource: $fileName")
