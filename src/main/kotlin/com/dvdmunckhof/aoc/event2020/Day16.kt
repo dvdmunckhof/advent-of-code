@@ -1,6 +1,7 @@
 package com.dvdmunckhof.aoc.event2020
 
 import com.dvdmunckhof.aoc.splitOnce
+import com.dvdmunckhof.aoc.toRange
 
 class Day16(input: String) {
     private val rules: Map<String, List<IntRange>>
@@ -12,11 +13,7 @@ class Day16(input: String) {
 
         rules = sections[0].split('\n').associate { line ->
             val (key, value) = line.splitOnce(": ")
-            val ranges = value.split(" or ").map { range ->
-                val (from, to) = range.splitOnce("-")
-                from.toInt()..to.toInt()
-            }
-            key to ranges
+            key to value.split(" or ").map(String::toRange)
         }
 
         ticket = sections[1].substringAfter('\n').split(',').map(String::toInt)
