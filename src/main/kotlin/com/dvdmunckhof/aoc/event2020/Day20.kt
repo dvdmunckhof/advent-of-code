@@ -1,5 +1,6 @@
 package com.dvdmunckhof.aoc.event2020
 
+import com.dvdmunckhof.aoc.rotate
 import kotlin.math.sqrt
 
 class Day20(input: String) {
@@ -138,10 +139,4 @@ class Day20(input: String) {
     }
 
     private data class Edge(val orientation: Int, val mirrored: Boolean)
-
-    companion object {
-        private fun <T> List<List<T>>.rotate(): List<List<T>> {
-            return (0..lastIndex).map { row -> (0..lastIndex).map { col -> this[lastIndex - col][row] } }
-        }
-    }
 }
