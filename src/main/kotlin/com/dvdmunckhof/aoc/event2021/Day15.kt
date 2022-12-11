@@ -33,7 +33,7 @@ class Day15(private val input: List<List<Int>>) {
         while (changed) {
             changed = false
 
-            for (p in pathGrid) {
+            for (p in pathGrid.points()) {
                 if (p == startPoint) {
                     pathGrid[p] = 0
                     continue
@@ -48,6 +48,6 @@ class Day15(private val input: List<List<Int>>) {
             }
         }
 
-        return pathGrid.data.last().last()
+        return pathGrid.rows.last().last()
     }
 }

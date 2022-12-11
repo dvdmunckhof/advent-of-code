@@ -1,23 +1,26 @@
 package com.dvdmunckhof.aoc.common
 
-class Grid<T> private constructor(private val list: MutableList<MutableList<T>>): Iterable<Point> {
-    val width = list.size
-    val height = list[0].size
-    val size = width * height
+class Grid<T> private constructor(private val data: MutableList<MutableList<T>>): AbstractList<T>() {
+    val width = data.size
+    val height = data[0].size
+    override val size = width * height
 
-    val data: List<List<T>>
-        get() = list
+    val rows: List<List<T>> = data
 
-    constructor(collection: Collection<Collection<T>>)
-            : this(collection.map(Collection<T>::toMutableList).toMutableList())
+    val columns: List<List<T>> = data[0].indices.map { columnIndex -> ColumnList(columnIndex) }
+
+    constructor(collection: Iterable<Iterable<T>>)
+            : this(collection.map(Iterable<T>::toMutableList).toMutableList())
 
     constructor(width: Int, height: Int, initialValue: T)
             : this(MutableList(width) { MutableList(height) { initialValue } })
 
-    operator fun get(p: Point): T = list[p.x][p.y]
+    override operator fun get(index: Int): T = data[index / width][index % width]
+
+    operator fun get(p: Point): T = data[p.x][p.y]
 
     operator fun set(p: Point, value: T) {
-        list[p.x][p.y] = value
+        data[p.x][p.y] = value
     }
 
     fun adjacent(point: Point, diagonal: Boolean = true): List<Point> {
@@ -26,14 +29,21 @@ class Grid<T> private constructor(private val list: MutableList<MutableList<T>>)
             .filter { p -> p.x >= 0 && p.y >= 0 && p.x < width && p.y < height }
     }
 
-    override fun iterator(): Iterator<Point> = GridIterator()
+    fun points(): Sequence<Point> = PointsSequence()
 
-    override fun toString(): String = list.joinToString("\n") { row -> row.joinToString("") }
+    override fun toString(): String = data.joinToString("\n") { row -> row.joinToString("") }
 
-    private inner class GridIterator : Iterator<Point> {
-        private var index = 0
-        override fun hasNext(): Boolean = index < size
-        override fun next(): Point = Point(index / width, index++ % width)
+    private inner class ColumnList(private val columnIndex: Int) : AbstractList<T>() {
+        override val size = data.size
+        override fun get(index: Int): T = data[index][columnIndex]
+    }
+
+    private inner class PointsSequence : Sequence<Point> {
+        override fun iterator() = object : Iterator<Point> {
+            private var index = 0
+            override fun hasNext(): Boolean = index < size
+            override fun next(): Point = Point(index / width, index++ % width)
+        }
     }
 
     companion object {

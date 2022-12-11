@@ -10,7 +10,7 @@ class Day11Test {
 
     @Test
     fun `Part 1 - Example`() {
-        val input = Resources.readAsList("2021/day11_example.txt")
+        val input = Resources.readAsGrid("2021/day11_example.txt")
         val answer = Day11(input).solvePart1()
 
         Assertions.assertEquals(1656, answer)
@@ -18,7 +18,7 @@ class Day11Test {
 
     @Test
     fun `Part 1 - Actual`() {
-        val input = Resources.readAsList("2021/day11_actual.txt")
+        val input = Resources.readAsGrid("2021/day11_actual.txt")
         val answer = Day11(input).solvePart1()
 
         Assertions.assertEquals(1_719, answer)
@@ -26,7 +26,7 @@ class Day11Test {
 
     @Test
     fun `Part 2 - Example`() {
-        val input = Resources.readAsList("2021/day11_example.txt")
+        val input = Resources.readAsGrid("2021/day11_example.txt")
         val answer = Day11(input).solvePart2()
 
         Assertions.assertEquals(195, answer)
@@ -34,7 +34,7 @@ class Day11Test {
 
     @Test
     fun `Part 2 - Actual`() {
-        val input = Resources.readAsList("2021/day11_actual.txt")
+        val input = Resources.readAsGrid("2021/day11_actual.txt")
         val answer = Day11(input).solvePart2()
 
         Assertions.assertEquals(232, answer)
