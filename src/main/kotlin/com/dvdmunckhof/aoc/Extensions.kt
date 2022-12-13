@@ -18,6 +18,8 @@ fun String.toRange(): IntRange {
     return start.toInt()..end.toInt()
 }
 
+fun <T> List<T>.toDeque(): ArrayDeque<T> = ArrayDeque(this)
+
 fun <T> List<List<T>>.rotate(): List<List<T>> {
     return (0..this[0].lastIndex).map { row -> (0..lastIndex).map { col -> this[lastIndex - col][row] } }
 }
