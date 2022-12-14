@@ -15,7 +15,7 @@ class Grid<T> private constructor(private val data: MutableList<MutableList<T>>)
     constructor(width: Int, height: Int, initialValue: T)
             : this(MutableList(width) { MutableList(height) { initialValue } })
 
-    override operator fun get(index: Int): T = data[index / width][index % width]
+    override operator fun get(index: Int): T = data[index / height][index % height]
 
     operator fun get(p: Point): T = data[p.x][p.y]
 
@@ -33,6 +33,8 @@ class Grid<T> private constructor(private val data: MutableList<MutableList<T>>)
 
     override fun toString(): String = data.joinToString("\n") { row -> row.joinToString("") }
 
+    fun indexToPoint(index: Int): Point = Point(index / height, index % height)
+
     private inner class ColumnList(private val columnIndex: Int) : AbstractList<T>() {
         override val size = data.size
         override fun get(index: Int): T = data[index][columnIndex]
@@ -42,7 +44,7 @@ class Grid<T> private constructor(private val data: MutableList<MutableList<T>>)
         override fun iterator() = object : Iterator<Point> {
             private var index = 0
             override fun hasNext(): Boolean = index < size
-            override fun next(): Point = Point(index / width, index++ % width)
+            override fun next(): Point = indexToPoint(index++)
         }
     }
 
