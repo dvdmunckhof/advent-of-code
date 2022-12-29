@@ -117,6 +117,6 @@ class Day16Test {
         val input = Resources.readString("2021/day16_actual.txt")
         val answer = Day16(input).solvePart2()
 
-        Assertions.assertEquals(2_935L, answer)
+        Assertions.assertEquals(342_997_120_375, answer)
     }
 }

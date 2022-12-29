@@ -10,7 +10,7 @@ class Day09Test {
 
     @Test
     fun `Part 1 - Example`() {
-        val input = Resources.readAsList("2022/day09_example.txt")
+        val input = Resources.readAsList("2022/day09_example1.txt")
         val answer = Day09(input).solvePart1()
 
         Assertions.assertEquals(13, answer)
@@ -26,7 +26,7 @@ class Day09Test {
 
     @Test
     fun `Part 2 - Example 1`() {
-        val input = Resources.readAsList("2022/day09_example.txt")
+        val input = Resources.readAsList("2022/day09_example1.txt")
         val answer = Day09(input).solvePart2()
 
         Assertions.assertEquals(1, answer)
