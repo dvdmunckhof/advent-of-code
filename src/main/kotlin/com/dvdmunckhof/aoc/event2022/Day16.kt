@@ -17,7 +17,7 @@ class Day16(private val input: List<String>) {
             .sortedByDescending { it.releasedPressure }
 
         return states.maxOf { state1 ->
-            val state2 = states.first { state2 -> state1.openedValves.value and state2.openedValves.value == 0L }
+            val state2 = states.first { state2 -> (state1.openedValves and state2.openedValves).isEmpty() }
             state1.releasedPressure + state2.releasedPressure
         }
     }

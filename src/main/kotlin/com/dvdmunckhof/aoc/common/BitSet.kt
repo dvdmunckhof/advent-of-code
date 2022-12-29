@@ -5,4 +5,10 @@ value class BitSet(val value: Long = 0L) {
     operator fun contains(i: Int) = value and (1L shl i) != 0L
     operator fun plus(i: Int) = BitSet(value or (1L shl i))
     operator fun minus(i: Int) = BitSet(value and (1L shl i).inv())
+
+    infix fun and(other: BitSet) = BitSet(this.value and other.value)
+
+    fun isEmpty(): Boolean {
+        return value == 0L
+    }
 }
