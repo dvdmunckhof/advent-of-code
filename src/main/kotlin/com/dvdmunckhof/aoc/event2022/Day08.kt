@@ -24,14 +24,14 @@ class Day08(input: List<List<Int>>) {
     fun solvePart2(): Int {
         return grid.points().maxOf { point ->
             val height = grid[point].height
-            val row = grid.rows[point.x]
-            val col = grid.columns[point.y]
+            val row = grid.rows[point.r]
+            val col = grid.columns[point.c]
 
             val directions = listOf(
-                row.subList(0, point.y).asReversed(),
-                row.subList(point.y + 1, row.size),
-                col.subList(0, point.x).asReversed(),
-                col.subList(point.x + 1, col.size),
+                row.subList(0, point.c).asReversed(),
+                row.subList(point.c + 1, row.size),
+                col.subList(0, point.r).asReversed(),
+                col.subList(point.r + 1, col.size),
             )
             if (directions.any(List<Tree>::isEmpty)) {
                 0

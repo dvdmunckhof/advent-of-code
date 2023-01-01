@@ -1,12 +1,12 @@
 package com.dvdmunckhof.aoc.common
 
-data class Point(val x: Int, val y: Int) {
+data class Point(val r: Int, val c: Int) {
 
     operator fun plus(p: Point): Point {
-        return Point(x + p.x, y + p.y)
+        return Point(r + p.r, c + p.c)
     }
 
     operator fun minus(p: Point): Point {
-        return Point(x - p.x, y - p.y)
+        return Point(r - p.r, c - p.c)
     }
 }

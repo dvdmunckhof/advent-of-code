@@ -13,8 +13,8 @@ class Day14(private val input: List<String>) {
         val grid = input.asSequence()
             .map { line ->
                 line.split(" -> ").map { coordinate ->
-                    val (x, y) = coordinate.splitOnce(",")
-                    Point(x.toInt(), y.toInt())
+                    val (r, c) = coordinate.splitOnce(",")
+                    Point(r.toInt(), c.toInt())
                 }
             }
             .flatMap { line -> line.windowed(2) }
@@ -22,21 +22,21 @@ class Day14(private val input: List<String>) {
             .toMutableSet()
 
         val start = Point(500, 0)
-        val maxY = grid.maxBy { it.y }.y + 2
+        val maxC = grid.maxBy { it.c }.c + 2
 
         if (hasFloor) {
-            for (x in (500 - maxY)..(500 + maxY)) {
-                grid += Point(x, maxY)
+            for (r in (500 - maxC)..(500 + maxC)) {
+                grid += Point(r, maxC)
             }
         }
 
-        val directionsX = arrayOf(0, -1, 1)
+        val directionsC = arrayOf(0, -1, 1)
         val initialSize = grid.size
         var point = start
 
-        outer@while (point.y <= maxY) {
-            for (directionX in directionsX) {
-                val p = Point(point.x + directionX, point.y + 1)
+        outer@while (point.c <= maxC) {
+            for (directionR in directionsC) {
+                val p = Point(point.r + directionR, point.c + 1)
                 if (!grid.contains(p)) {
                     point = p
                     continue@outer
@@ -56,9 +56,9 @@ class Day14(private val input: List<String>) {
     }
 
     private operator fun Point.rangeTo(target: Point): Sequence<Point> = sequence {
-        for (x in x toward target.x) {
-            for (y in y toward target.y) {
-                yield(Point(x, y))
+        for (r in r toward target.r) {
+            for (c in c toward target.c) {
+                yield(Point(r, c))
             }
         }
     }

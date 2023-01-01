@@ -29,11 +29,11 @@ class Day09(private val input: List<String>) {
                 for (i in 1..n) {
                     val front = knots[i-1]
                     val knot = knots[i]
-                    val deltaX = front.x - knot.x
-                    val deltaY = front.y - knot.y
+                    val deltaR = front.r - knot.r
+                    val deltaC = front.c - knot.c
 
-                    if (abs(deltaX) > 1 || abs(deltaY) > 1) {
-                        knots[i] += Point(deltaX.coerceIn(-1, 1), deltaY.coerceIn(-1, 1))
+                    if (abs(deltaR) > 1 || abs(deltaC) > 1) {
+                        knots[i] += Point(deltaR.coerceIn(-1, 1), deltaC.coerceIn(-1, 1))
                         if (i == n) {
                             positions += knots[i]
                         }
