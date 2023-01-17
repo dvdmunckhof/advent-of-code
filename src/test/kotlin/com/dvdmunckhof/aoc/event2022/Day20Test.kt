@@ -16,13 +16,13 @@ class Day20Test {
         Assertions.assertEquals(3, answer)
     }
 
-//    @Test
-//    fun `Part 1 - Actual`() {
-//        val input = Resources.readAsList("2022/day20_actual.txt")
-//        val answer = Day20(input).solvePart1()
-//
-//        Assertions.assertEquals(0, answer)
-//    }
+    @Test
+    fun `Part 1 - Actual`() {
+        val input = Resources.readAsIntList("2022/day20_actual.txt")
+        val answer = Day20(input).solvePart1()
+
+        Assertions.assertEquals(0, answer)
+    }
 
 //    @Test
 //    fun `Part 2 - Example`() {
