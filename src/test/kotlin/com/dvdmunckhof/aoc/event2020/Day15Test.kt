@@ -4,8 +4,10 @@ import com.dvdmunckhof.aoc.Resources
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Timeout
 
 @DisplayName("2020 - Day 15")
+@Timeout(10)
 class Day15Test {
 
     @Test

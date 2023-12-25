@@ -12,20 +12,20 @@ object Resources {
         return resourceReader(fileName).readLines()
     }
 
-    fun readAsIntList(filename: String): List<Int> {
-        return readAsList(filename).map(String::toInt)
+    fun readAsIntList(fileName: String): List<Int> {
+        return readAsList(fileName).map(String::toInt)
     }
 
-    fun readAsLongList(filename: String): List<Long> {
-        return readAsList(filename).map(String::toLong)
+    fun readAsLongList(fileName: String): List<Long> {
+        return readAsList(fileName).map(String::toLong)
     }
 
-    fun readSingleIntList(filename: String): List<Int> {
-        return readString(filename).split(",").map(String::toInt)
+    fun readSingleIntList(fileName: String): List<Int> {
+        return readString(fileName).split(",").map(String::toInt)
     }
 
-    fun readAsGrid(filename: String): List<List<Int>> {
-        return readAsList(filename).map { row -> row.map(Char::digitToInt) }
+    fun readAsGrid(fileName: String): List<List<Int>> {
+        return readAsList(fileName).map { row -> row.map(Char::digitToInt) }
     }
 
     private fun resourceReader(fileName: String): Reader {
