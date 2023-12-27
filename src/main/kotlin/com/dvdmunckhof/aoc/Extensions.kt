@@ -18,6 +18,9 @@ fun String.toRange(): IntRange {
     return start.toInt()..end.toInt()
 }
 
+val IntRange.size: Int
+    get() = this.last - this.first + 1
+
 fun <T> List<T>.toDeque(): ArrayDeque<T> = ArrayDeque(this)
 
 fun <T> List<List<T>>.rotate(): List<List<T>> {
