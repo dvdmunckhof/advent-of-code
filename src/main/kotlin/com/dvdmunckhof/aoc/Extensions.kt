@@ -13,6 +13,8 @@ fun String.splitOnce(delimiter: String): Pair<String, String> {
     return first to second
 }
 
+fun String.splitChunks(): List<String> = this.split("\n\n")
+
 fun String.toRange(): IntRange {
     val (start, end) = this.splitOnce("-")
     return start.toInt()..end.toInt()

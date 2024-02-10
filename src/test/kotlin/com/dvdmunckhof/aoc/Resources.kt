@@ -12,6 +12,10 @@ object Resources {
         return resourceReader(fileName).readLines()
     }
 
+    fun readChunks(fileName: String): List<String> {
+        return readString(fileName).splitChunks()
+    }
+
     fun readAsIntList(fileName: String): List<Int> {
         return readAsList(fileName).map(String::toInt)
     }
