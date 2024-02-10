@@ -30,3 +30,5 @@ fun <T> List<List<T>>.rotate(): List<List<T>> {
 }
 
 fun <T> Iterable<Iterable<T>>.toGrid(): Grid<T> = Grid(this)
+
+fun Iterable<Int>.multiply(): Int = this.reduce { acc, i -> acc * i }

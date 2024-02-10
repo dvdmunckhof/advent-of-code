@@ -1,5 +1,6 @@
 package com.dvdmunckhof.aoc.event2023
 
+import com.dvdmunckhof.aoc.multiply
 import com.dvdmunckhof.aoc.splitOnce
 import kotlin.math.max
 
@@ -25,7 +26,7 @@ class Day02(private val input: List<String>) {
             cubeMap[color] = max(count, cubeMap.getValue(color))
         }
 
-        cubeMap.values.reduce {acc, i -> acc * i }
+        cubeMap.values.multiply()
     }
 
     private fun solve(delegate: (gameId: Int, subsets: List<Pair<Int, String>>) -> Int): Int {
