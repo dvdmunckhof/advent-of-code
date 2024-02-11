@@ -32,3 +32,11 @@ fun <T> List<List<T>>.rotate(): List<List<T>> {
 fun <T> Iterable<Iterable<T>>.toGrid(): Grid<T> = Grid(this)
 
 fun Iterable<Int>.multiply(): Int = this.reduce { acc, i -> acc * i }
+
+fun String.groupCount(): MutableMap<Char, Int> {
+    val map = mutableMapOf<Char, Int>()
+    for (item in this) {
+        map[item] = map.getOrDefault(item, 0) + 1
+    }
+    return map
+}
