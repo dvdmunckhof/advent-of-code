@@ -18,4 +18,9 @@ value class PuzzleInput(val fileName: String) {
     fun readLines(): List<String> {
         return reader().use(Reader::readLines)
     }
+
+    fun readCharGrid(): Grid<Char> {
+        val data = readLines().map(String::toList)
+        return Grid(data)
+    }
 }
