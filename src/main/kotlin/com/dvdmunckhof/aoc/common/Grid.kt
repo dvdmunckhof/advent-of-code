@@ -29,6 +29,10 @@ class Grid<T>(private val data: MutableList<MutableList<T>>): AbstractList<T>() 
 
     fun points(): Sequence<Point> = PointsSequence()
 
+    fun adjacent(point: Point): List<Point> {
+        return DIRECTION_OFFSETS_HV.map { offset -> point + offset }.filter { it in this }
+    }
+
     override fun toString(): String = columns.asReversed().joinToString("\n") { col -> col.joinToString("") }
 
     fun indexToPoint(index: Int): Point = Point(index / height, index % height)
@@ -48,7 +52,7 @@ class Grid<T>(private val data: MutableList<MutableList<T>>): AbstractList<T>() 
 
     companion object {
         /** Offsets in horizontal, vertical and diagonal direction */
-        val DIRECTION_OFFSETS = arrayOf(
+        val DIRECTION_OFFSETS_HVD = arrayOf(
             Point(-1, -1), // NW
             Point(-1, 0),  // N
             Point(-1, 1),  // NE
@@ -57,6 +61,12 @@ class Grid<T>(private val data: MutableList<MutableList<T>>): AbstractList<T>() 
             Point(1, -1),  // SW
             Point(1, 0),   // S
             Point(1, 1)    // SE
+        )
+        val DIRECTION_OFFSETS_HV = arrayOf(
+            Point(-1, 0),  // N
+            Point(0, 1),   // E
+            Point(1, 0),   // S
+            Point(0, -1),  // W
         )
     }
 }
