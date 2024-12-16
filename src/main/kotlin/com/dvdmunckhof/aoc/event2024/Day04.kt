@@ -8,7 +8,7 @@ class Day04(input: PuzzleInput) {
     private val grid = input.readCharGrid()
 
     fun solvePart1(): Int {
-        val directionOffsets = Grid.DIRECTION_OFFSETS
+        val directionOffsets = Grid.DIRECTION_OFFSETS_HVD
             .map { point -> listOf('M' to point, 'A' to point * 2, 'S' to point * 3) }
 
         return grid.points().sumOf { point ->

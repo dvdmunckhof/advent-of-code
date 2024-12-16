@@ -5,7 +5,7 @@ import java.nio.file.Paths
 import kotlin.io.path.reader
 
 @JvmInline
-value class PuzzleInput(val fileName: String) {
+value class PuzzleInput(private val fileName: String) {
 
     fun reader(): Reader {
         return Paths.get(fileName).reader()
@@ -21,6 +21,11 @@ value class PuzzleInput(val fileName: String) {
 
     fun readCharGrid(): Grid<Char> {
         val data = readLines().map(String::toList)
+        return Grid(data)
+    }
+
+    fun readDigitGrid(): Grid<Int> {
+        val data = readLines().map { it.map(Char::digitToInt) }
         return Grid(data)
     }
 }
