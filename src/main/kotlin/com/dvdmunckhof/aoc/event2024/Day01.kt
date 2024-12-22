@@ -1,11 +1,12 @@
 package com.dvdmunckhof.aoc.event2024
 
 import com.dvdmunckhof.aoc.common.PuzzleInput
+import com.dvdmunckhof.aoc.common.groupCount
 import kotlin.math.abs
 
 class Day01(input: PuzzleInput) {
-    val listLeft: List<Int>
-    val listRight: List<Int>
+    private val listLeft: List<Int>
+    private val listRight: List<Int>
 
     init {
         val lines = input.readLines()
@@ -22,10 +23,7 @@ class Day01(input: PuzzleInput) {
     }
 
     fun solvePart2(): Int {
-        val map = mutableMapOf<Int, Int>()
-        for (value in listRight) {
-            map[value] = map.getOrDefault(value, 0) + value
-        }
-        return listLeft.sumOf { value -> map.getOrDefault(value, 0) }
+        val mapRight = listRight.groupCount().mapValues { (key, count) -> count * key }
+        return listLeft.sumOf { value -> mapRight.getOrDefault(value, 0) }
     }
 }

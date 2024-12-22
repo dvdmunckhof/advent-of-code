@@ -10,3 +10,15 @@ fun String.splitAt(delimiter: String): Pair<String, String> {
     val second = this.substring(index + delimiter.length)
     return first to second
 }
+
+fun Iterable<Int>.multiply(): Int {
+    return this.reduce {acc, n -> acc * n }
+}
+
+fun <T> Iterable<T>.groupCount(): MutableMap<T, Int> {
+    val map = mutableMapOf<T, Int>()
+    for (item in this) {
+        map[item] = map.getOrDefault(item, 0) + 1
+    }
+    return map
+}
