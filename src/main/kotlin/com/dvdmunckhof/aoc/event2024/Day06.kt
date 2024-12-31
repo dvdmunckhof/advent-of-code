@@ -24,7 +24,7 @@ class Day06(input: PuzzleInput) {
                     break
                 }
                 if (grid[nextPos] == '#' || nextPos == obstruction) {
-                    direction = direction.next
+                    direction = direction.right
                     if (!turningPoints.add(Triple(position.r, position.c, direction.ordinal))) {
                         return@count true
                     }
@@ -48,7 +48,7 @@ class Day06(input: PuzzleInput) {
             }
 
             if (grid[nextPos] == '#') {
-                direction = direction.next
+                direction = direction.right
             } else {
                 positions += nextPos
                 position = nextPos
@@ -63,7 +63,8 @@ class Day06(input: PuzzleInput) {
         SOUTH(Point(1, 0)),
         WEST(Point(0, -1));
 
-        val next by lazy { entries[(this.ordinal + 1) % 4] }
+        val left by lazy { entries[(this.ordinal + 3) % 4] }
+        val right by lazy { entries[(this.ordinal + 1) % 4] }
     }
 
     private fun Point.walk(direction: Direction): Point = this + direction.offset

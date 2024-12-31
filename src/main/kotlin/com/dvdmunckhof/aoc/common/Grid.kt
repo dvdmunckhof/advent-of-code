@@ -12,8 +12,8 @@ class Grid<T>(private val data: MutableList<MutableList<T>>): AbstractList<T>() 
     constructor(collection: Iterable<Iterable<T>>)
             : this(collection.map(Iterable<T>::toMutableList).toMutableList())
 
-    constructor(width: Int, height: Int, initialValue: T)
-            : this(MutableList(width) { MutableList(height) { initialValue } })
+    constructor(width: Int, height: Int, init: (index: Int) -> T)
+            : this(MutableList(height) { MutableList(width, init)})
 
     override operator fun get(index: Int): T = data[index / height][index % height]
 
@@ -60,7 +60,7 @@ class Grid<T>(private val data: MutableList<MutableList<T>>): AbstractList<T>() 
             Point(0, 1),   // E
             Point(1, -1),  // SW
             Point(1, 0),   // S
-            Point(1, 1)    // SE
+            Point(1, 1),   // SE
         )
         val DIRECTION_OFFSETS_HV = arrayOf(
             Point(-1, 0),  // N

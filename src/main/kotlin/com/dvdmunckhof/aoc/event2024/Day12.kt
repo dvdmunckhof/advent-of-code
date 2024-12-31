@@ -6,7 +6,7 @@ import com.dvdmunckhof.aoc.common.PuzzleInput
 
 class Day12(input: PuzzleInput) {
     private val gridInput = input.readCharGrid()
-    private val gridProcessed = Grid(gridInput.width, gridInput.height, false)
+    private val gridProcessed = Grid(gridInput.width, gridInput.height) { false }
     private val cornerOffsetsList = arrayOf(
         arrayOf(Point(0, 1), Point(1, 1), Point(1, 0)),
         arrayOf(Point(1, 0), Point(1, -1), Point(0, -1)),
