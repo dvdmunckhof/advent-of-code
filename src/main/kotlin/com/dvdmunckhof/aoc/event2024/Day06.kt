@@ -1,7 +1,9 @@
 package com.dvdmunckhof.aoc.event2024
 
+import com.dvdmunckhof.aoc.common.Direction
 import com.dvdmunckhof.aoc.common.Point
 import com.dvdmunckhof.aoc.common.PuzzleInput
+import com.dvdmunckhof.aoc.common.move
 import kotlin.Triple
 
 class Day06(input: PuzzleInput) {
@@ -19,7 +21,7 @@ class Day06(input: PuzzleInput) {
             var direction = Direction.NORTH
 
             while (true) {
-                val nextPos = position.walk(direction)
+                val nextPos = position.move(direction)
                 if (nextPos !in grid) {
                     break
                 }
@@ -42,7 +44,7 @@ class Day06(input: PuzzleInput) {
         var direction = Direction.NORTH
 
         while (true) {
-            val nextPos = position.walk(direction)
+            val nextPos = position.move(direction)
             if (nextPos !in grid) {
                 break
             }
@@ -56,16 +58,4 @@ class Day06(input: PuzzleInput) {
         }
         return positions
     }
-
-    private enum class Direction(val offset: Point) {
-        NORTH(Point(-1, 0)),
-        EAST(Point(0, 1)),
-        SOUTH(Point(1, 0)),
-        WEST(Point(0, -1));
-
-        val left by lazy { entries[(this.ordinal + 3) % 4] }
-        val right by lazy { entries[(this.ordinal + 1) % 4] }
-    }
-
-    private fun Point.walk(direction: Direction): Point = this + direction.offset
 }

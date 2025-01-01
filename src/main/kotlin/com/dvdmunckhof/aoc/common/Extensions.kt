@@ -22,3 +22,5 @@ fun <T> Iterable<T>.groupCount(): MutableMap<T, Int> {
     }
     return map
 }
+
+fun Point.move(direction: Direction): Point = this + direction.offset

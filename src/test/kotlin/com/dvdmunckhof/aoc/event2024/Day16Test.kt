@@ -26,20 +26,27 @@ class Day16Test {
     fun `Part 1 - Puzzle`() {
         val input = PuzzleInput("files/2024/day16_puzzle.txt")
         val answer = Day16(input).solvePart1()
-        Assertions.assertEquals(0, answer)
+        Assertions.assertEquals(143_580, answer)
     }
 
     @Test
-    fun `Part 2 - Example`() {
-        val input = PuzzleInput("files/2024/day16_example.txt")
+    fun `Part 2 - Example 1`() {
+        val input = PuzzleInput("files/2024/day16_example1.txt")
         val answer = Day16(input).solvePart2()
-        Assertions.assertEquals(0, answer)
+        Assertions.assertEquals(45, answer)
+    }
+
+    @Test
+    fun `Part 2 - Example 2`() {
+        val input = PuzzleInput("files/2024/day16_example2.txt")
+        val answer = Day16(input).solvePart2()
+        Assertions.assertEquals(64, answer)
     }
 
     @Test
     fun `Part 2 - Puzzle`() {
         val input = PuzzleInput("files/2024/day16_puzzle.txt")
         val answer = Day16(input).solvePart2()
-        Assertions.assertEquals(0, answer)
+        Assertions.assertEquals(645, answer)
     }
 }
