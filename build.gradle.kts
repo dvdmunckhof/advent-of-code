@@ -1,9 +1,9 @@
 plugins {
-    kotlin("jvm") version "2.1.0"
+    kotlin("jvm") version "2.3.0"
 }
 
 group = "com.dvdmunckhof"
-version = "2024"
+version = "2025"
 
 repositories {
     mavenCentral()
@@ -17,5 +17,5 @@ tasks.test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
