@@ -29,8 +29,9 @@ class Grid<T>(private val data: MutableList<MutableList<T>>): AbstractList<T>() 
 
     fun points(): Sequence<Point> = PointsSequence()
 
-    fun adjacent(point: Point): List<Point> {
-        return DIRECTION_OFFSETS_HV.map { offset -> point + offset }.filter { it in this }
+    fun adjacent(point: Point, diagonally: Boolean = true): List<Point> {
+        val offsets = if (diagonally) DIRECTION_OFFSETS_HVD else DIRECTION_OFFSETS_HV
+        return offsets.map { offset -> point + offset }.filter { it in this }
     }
 
     override fun toString(): String = columns.asReversed().joinToString("\n") { col -> col.joinToString("") }

@@ -23,6 +23,11 @@ value class PuzzleInput(private val fileName: String) {
         return readLines().map { it.map(Char::digitToInt) }
     }
 
+    fun <T> readGrid(transform: (Char) -> T): Grid<T> {
+        val data = readLines().map { line -> line.map(transform) }
+        return Grid(data)
+    }
+
     fun readCharGrid(): Grid<Char> {
         val data = readLines().map(String::toList)
         return Grid(data)
