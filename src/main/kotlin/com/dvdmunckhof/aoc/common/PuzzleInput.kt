@@ -19,13 +19,16 @@ value class PuzzleInput(private val fileName: String) {
         return reader().use(Reader::readLines)
     }
 
+    fun readDigitLines(): List<List<Int>> {
+        return readLines().map { it.map(Char::digitToInt) }
+    }
+
     fun readCharGrid(): Grid<Char> {
         val data = readLines().map(String::toList)
         return Grid(data)
     }
 
     fun readDigitGrid(): Grid<Int> {
-        val data = readLines().map { it.map(Char::digitToInt) }
-        return Grid(data)
+        return Grid(readDigitLines())
     }
 }
