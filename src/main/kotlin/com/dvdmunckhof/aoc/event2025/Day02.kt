@@ -1,14 +1,12 @@
 package com.dvdmunckhof.aoc.event2025
 
 import com.dvdmunckhof.aoc.common.PuzzleInput
+import com.dvdmunckhof.aoc.common.toRange
 
 class Day02(input: PuzzleInput) {
     val ids = input.readString()
         .splitToSequence(",")
-        .flatMap {
-            val (a, b) = it.split("-")
-            a.toLong()..b.toLong()
-        }
+        .flatMap(String::toRange)
 
     fun solvePart1(): Long {
         return ids.filter {

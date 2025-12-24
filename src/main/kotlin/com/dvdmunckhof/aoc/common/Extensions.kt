@@ -12,7 +12,7 @@ fun String.splitAt(delimiter: String): Pair<String, String> {
 }
 
 fun Iterable<Int>.multiply(): Int {
-    return this.reduce {acc, n -> acc * n }
+    return this.reduce { acc, n -> acc * n }
 }
 
 fun <T> Iterable<T>.groupCount(): MutableMap<T, Int> {
@@ -22,3 +22,11 @@ fun <T> Iterable<T>.groupCount(): MutableMap<T, Int> {
     }
     return map
 }
+
+fun String.toRange(delimiter: String = "-"): LongRange {
+    val (a, b) = this.splitAt(delimiter)
+    return a.toLong()..b.toLong()
+}
+
+val LongRange.size: Long
+    get() = this.last - this.first + 1
