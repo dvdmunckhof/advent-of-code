@@ -15,6 +15,10 @@ fun Iterable<Int>.multiply(): Int {
     return this.reduce { acc, n -> acc * n }
 }
 
+fun Iterable<Long>.multiply(): Long {
+    return this.reduce { acc, n -> acc * n }
+}
+
 fun <T> Iterable<T>.groupCount(): MutableMap<T, Int> {
     val map = mutableMapOf<T, Int>()
     for (item in this) {
