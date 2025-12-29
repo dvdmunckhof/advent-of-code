@@ -5,7 +5,6 @@ import com.dvdmunckhof.aoc.common.PuzzleInput
 class Day07(input: PuzzleInput) {
     private val lines = input.readLines()
     private val startCol = lines[0].indexOfFirst { it == 'S' }
-    private val cache = Array(lines.size) { mutableMapOf<Int, Long>() }
 
     fun solvePart1(row: Int = 0, beams: Set<Int> = setOf(startCol)): Int {
         if (row == lines.lastIndex) {
@@ -29,17 +28,28 @@ class Day07(input: PuzzleInput) {
         return splits + solvePart1(row + 1, newBeams)
     }
 
-    fun solvePart2(row: Int = 0, col: Int = startCol): Long {
-        if (row == lines.lastIndex) {
-            return 1L
+    fun solvePart2(): Long {
+        val startLine = lines[0].map { if (it == 'S') 1L else 0L }
+        return solve(1, startLine)
+    }
+
+    private tailrec fun solve(row: Int, beams: List<Long>): Long {
+        if (row == lines.size) {
+            return beams.sum()
         }
 
-        return cache[row].computeIfAbsent(col) {
+        val list = MutableList(beams.size) { 0L }
+        for ((col, value) in beams.withIndex()) {
+            if (value == 0L) continue
+
             if (lines[row][col] == '^') {
-                solvePart2(row + 1, col - 1) + solvePart2(row + 1, col + 1)
+                list[col - 1] += value
+                list[col + 1] += value
             } else {
-                solvePart2(row + 1, col)
+                list[col] += value
             }
         }
+
+        return solve(row + 1, list)
     }
 }
